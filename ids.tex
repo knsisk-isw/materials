@@ -1,0 +1,38 @@
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[freepin,cutmark,crossmark]{ticket}
+\usepackage{graphicx}
+\usepackage{etoolbox}
+\usepackage{csvsimple}
+\usepackage{color}
+\usepackage{tikz}
+\usepackage[black]{merriweather}
+\usepackage[T1]{fontenc}
+
+\definecolor{isw}{rgb}{.95,.26,.21}
+\ticketSize{87}{55}
+\ticketDistance{0}{0}
+
+\renewcommand{\ticketdefault}{%
+  \sffamily
+  \color{isw!80!white}
+  \put(35.5,36){\tikz\draw[white,fill=isw!60!white] (0,0) rectangle (16mm,16mm);}
+  \put(43.5,37){\makebox[0mm]{\color{white}\bfseries\huge ISW}}
+  \put(36,48){\bfseries\large \color{white}5\textsuperscript{th}}
+  \color{isw!20!white}
+}
+\newcommand{\confpin}[5]{\ticket{%
+  \sffamily
+    \color{isw}
+    \put(43.5,26){\makebox[0mm]{\bfseries\large #1}}
+    \put(43.5,18){\makebox[0mm]{\bfseries\Huge #2}}
+    \color{isw!60!white}
+    \put(43.5,8){\makebox[0mm]{\bfseries\large #3}}
+    \put(43.5,4){\makebox[0mm]{\bfseries\normalsize #4, #5}}%
+}}
+
+\begin{document}
+\csvreader[head to column names]{people.csv}{}%
+{\confpin{\firstname}{\lastname}{\university}{\city}{\country}}%
+
+\end{document}
