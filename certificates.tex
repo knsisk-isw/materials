@@ -1,0 +1,63 @@
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[freepin]{ticket}
+\usepackage{graphicx}
+\usepackage{etoolbox}
+\usepackage{csvsimple}
+\usepackage{color}
+\usepackage{tikz}
+\usepackage[black]{merriweather}
+\usepackage[T1]{fontenc}
+
+\definecolor{isw}{rgb}{.95,.26,.21}
+\ticketSize{180}{260}
+\ticketDistance{0}{0}
+\ticketNumbers{1}{1}
+
+\renewcommand{\ticketdefault}{%
+  \sffamily
+  \color{isw}
+  \put(0,250){\includegraphics[width=80mm]{pwrc}}
+  \put(120,245){\includegraphics[width=60mm]{dmu}}
+
+  {
+    \put(90,200){\makebox[0mm]{\bfseries\fontsize{50}{60}\selectfont Certificate}}
+  }
+  {
+    \rmfamily
+    \put(62,180){\makebox[0mm]{\Huge Hereby, we confirm that}}
+    \put(34.5,140){\makebox[0mm]{\Huge took part in}}
+  }
+
+  \put(45,122){\bfseries\large the 5\textsuperscript{th}}
+  \put(61,120){\bfseries\huge International}
+  \put(61,113){\bfseries\huge Students}
+  \put(61,106){\bfseries\huge Workshop}
+  \put(61,100){\bfseries\large and the 17\textsuperscript{th} Polish-British Workshop}
+  \put(61,94){\large \emph{Szklarska Poreba, 1---4 June 2017}}
+
+
+  \put(30,20){\makebox[0mm]{\bfseries\large Leszek Koszalka}}
+  \put(30,14){\makebox[0mm]{\large \emph{Co-chair of ISW}}}
+
+  \put(90,20){\makebox[0mm]{\bfseries\large Keith J. Burnham}}
+  \put(90,14){\makebox[0mm]{\large \emph{Co-chair of ISW}}}
+
+  \put(150,20){\makebox[0mm]{\bfseries\large Iwona Pozniak-Koszalka}}
+  \put(150,14){\makebox[0mm]{\large \emph{Co-chair of ISW}}}
+
+}
+\newcommand{\confpin}[2]{\ticket{%
+  \sffamily
+    {
+      \rmfamily
+      \put(90,160){\makebox[0mm]{\emph{\fontsize{40}{60}\selectfont #1 #2}}}
+    }
+    \color{isw!60!white}
+}}
+
+\begin{document}
+\csvreader[head to column names]{people.csv}{}%
+{\confpin{\firstname}{\lastname}}%
+
+\end{document}
